@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+    belongs_to :branch
     has_many :accounts
     has_many :loans
     validates :number, presence: true , numericality:{only_integer: true} , length: {maximum: 10}
