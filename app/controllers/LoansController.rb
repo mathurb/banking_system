@@ -89,6 +89,8 @@ class LoansController < ApplicationController
                 end
             end
         end
-    
-    
+        private
+        def loan_params
+            params.require(:loan).permit(:client_id, :branch_id, :loan_type, :amount)
+        end
     end

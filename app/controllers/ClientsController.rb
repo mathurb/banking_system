@@ -89,6 +89,8 @@ skip_before_action :verify_authenticity_token
 			end
 		end
 	end
-
-
+	private
+	def client_params
+		params.require(:client).permit(:branch_id, :number, :age, :name)
+	end
 end

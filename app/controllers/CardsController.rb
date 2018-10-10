@@ -88,6 +88,8 @@ class CardsController < ApplicationController
 			end
 		end
 	end
-
-
+	private
+	def card_params
+		params.require(:card).permit(:account_id, :card_type, :number, :pin, :limit)
+	end
 end

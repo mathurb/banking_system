@@ -89,6 +89,9 @@ class AccountsController < ApplicationController
                 end
             end
         end
-    
+    private
+    def account_params
+        params.require(:account).permit(:amount, :ac_type, :ac_number, :ifsc, :branch_id, :client_id)
+    end
     
     end

@@ -3,6 +3,7 @@ class Transection < ApplicationRecord
     has_one :card
     validates :txn_type, presence: true, length: {is: 1}, inclusion: { in: %w(W D)}
     validates :amount, presence: true,length: {maximum: 10}, numericality: true
+    validates :account_id, presence: true
     validate :withdrawl_validity
     after_save :amount_update
    

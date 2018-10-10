@@ -89,6 +89,8 @@ class BranchesController < ApplicationController
 			end
 		end
 	end
-
-
+	private
+	def branch_params
+		params.require(:branch).permit(:ifsc, :address, :number, :bank_id)
+	end
 end

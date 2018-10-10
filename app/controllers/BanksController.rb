@@ -90,6 +90,8 @@ rescue => e
  end
  end
 end
-
-
+private
+def bank_params
+  params.require(:bank).permit(:name, :address, :number)
+end
 end	

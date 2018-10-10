@@ -89,6 +89,8 @@ class TransectionsController < ApplicationController
                 end
             end
         end
-    
-    
+        private
+        def transection_params
+            params.require(:transection).permit(:account_id, :amount, :txn_type)
+        end
     end
