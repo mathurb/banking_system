@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_182341) do
+ActiveRecord::Schema.define(version: 2018_10_10_165042) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "client_id"
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 2018_10_07_182341) do
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "number"
   end
 
   create_table "branches", force: :cascade do |t|
@@ -51,7 +51,9 @@ ActiveRecord::Schema.define(version: 2018_10_07_182341) do
     t.decimal "limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bank_id"
     t.index ["account_id"], name: "index_cards_on_account_id"
+    t.index ["bank_id"], name: "index_cards_on_bank_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -70,6 +72,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_182341) do
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "branch_id"
+    t.index ["branch_id"], name: "index_loans_on_branch_id"
     t.index ["client_id"], name: "index_loans_on_client_id"
   end
 

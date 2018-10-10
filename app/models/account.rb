@@ -8,6 +8,7 @@ class Account < ApplicationRecord
     validates :ac_type, presence: true, length: {maximum: 15},inclusion: { in: %w(savings current)}
     validates :ac_number, presence: true, length: {maximum: 17}
     validates :ifsc, presence: true, length: {maximum: 10}
+    validates :client_id, :branch_id, presence: true
     validate :amount_validity
     before_create :put_ifsc
     private 
