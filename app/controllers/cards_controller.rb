@@ -1,24 +1,23 @@
 class CardsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
- 	def new
-  		@card = Card.new
-  		render json: {card: @card}, status: :ok 
+  def new
+    @card = Card.new
+  	render json: {card: @card}, status: :ok 
  	end
 
  	def show
-		begin
-			@card = Card.find(params[:id])
+	  begin
+		  @card = Card.find(params[:id])
 			render json: {card:@card}, status: :ok 
 		rescue ActiveRecord::RecordNotFound => e
 			render json: {error:e.message}, status: :not_found			
     	end
-    end
+  end
 
  	def create
 		begin
 			@card = Card.new(card_params)
-			
 			if @card.save
 				render json: { card: @card}, status: :created 
 			else
@@ -65,8 +64,10 @@ class CardsController < ApplicationController
 			render json: {error:e.message}, status: :unprocessable_entity 
 		end
 	end
+
 	private
-	def card_params
-		params.require(:card).permit(:account_id, :card_type, :number, :pin, :limit)
-	end
+	  def card_params
+		  params.require(:card).permit(:account_id, :card_type, :number, :pin, :limit)
+	  end
+
 end

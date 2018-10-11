@@ -1,22 +1,22 @@
 lass ClientsController < ApplicationController
 
-skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
- def new
-  @client = Client.new
-  render json: {client: @client}, status: :ok 
- end
+  def new
+    @client = Client.new
+    render json: {client: @client}, status: :ok 
+  end
 
- def show
-	begin
-		@client = Client.find(params[:id])
-		render json: {client:@client}, status: :ok 
-	rescue ActiveRecord::RecordNotFound => e
-		render json: {error:e.message}, status: :not_found
+  def show
+    begin
+		  @client = Client.find(params[:id])
+		  render json: {client:@client}, status: :ok 
+	  rescue ActiveRecord::RecordNotFound => e
+		  render json: {error:e.message}, status: :not_found
     end
- end
+  end
 
- def create
+  def create
 		begin
 			@client = Client.new(client_params)
 			if @client.save
@@ -31,7 +31,7 @@ skip_before_action :verify_authenticity_token
 
 	def destroy
 		begin
-			@client = Client.find(params[:id])
+  		@client = Client.find(params[:id])
 			@client.destroy
 			render json: {}, status: :ok 
 		rescue ActiveRecord::RecordNotFound => e
@@ -65,8 +65,10 @@ skip_before_action :verify_authenticity_token
 			render json: {error:e.message}, status: :unprocessable_entity 
 		end
 	end
+	
 	private
-	def client_params
-		params.require(:client).permit(:branch_id, :number, :age, :name)
-	end
+	  def client_params
+		  params.require(:client).permit(:branch_id, :number, :age, :name)
+		end
+		
 end
