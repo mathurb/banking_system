@@ -31,7 +31,7 @@ class BanksController < ApplicationController
 
   def index
     @bank = Bank.all
-      render json: {bank:@bank}, status: :ok 
+    render json: {bank:@bank}, status: :ok 
   end
 
   def edit
