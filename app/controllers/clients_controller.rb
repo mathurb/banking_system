@@ -1,4 +1,4 @@
-lass ClientsController < ApplicationController
+class ClientsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
