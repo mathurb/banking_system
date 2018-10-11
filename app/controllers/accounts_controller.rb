@@ -3,8 +3,8 @@ class AccountsController < ApplicationController
   skip_before_action :verify_authenticity_token
   
   def new
-    @account = Account.new
-    render json: {account: @account}, status: :ok 
+  @account = Account.new
+  render json: {account: @account}, status: :ok 
   end
   
   def show
@@ -34,7 +34,7 @@ class AccountsController < ApplicationController
       @account = Account.find(params[:id])
       @account.destroy
       render json: {}, status: :ok  
-    rescue ActiveRecord::RecordNotFound => e                    
+     rescue ActiveRecord::RecordNotFound => e                    
       render json: {error:e.message}, status: :unprocessable_entity 
     end
   end

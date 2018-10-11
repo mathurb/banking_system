@@ -20,9 +20,9 @@ class ClientsController < ApplicationController
     begin
       @client = Client.new(client_params)
       if @client.save
-        render json: { client: @client}, status: :created 
-      else
-	render json: @client.errors, status: :unprocessable_entity 
+				render json: { client: @client}, status: :created 
+			else
+        render json: @client.errors, status: :unprocessable_entity 
       end
     rescue ActiveRecord::InvalidForeignKey => e
       render json: {error:'Invalid Foreign Key'}, status: :unprocessable_entity 
@@ -33,7 +33,7 @@ class ClientsController < ApplicationController
     begin
       @client = Client.find(params[:id])
       @client.destroy
-      render json: {}, status: :ok 
+			render json: {}, status: :ok 
     rescue ActiveRecord::RecordNotFound => e
       render json: {error:e.message}, status: :unprocessable_entity 
     end
@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
 
   def edit
     begin
-      @client = Client.find(params[:id])
+			@client = Client.find(params[:id])
       render json: {client:@client}, status: :ok 
     rescue ActiveRecord::RecordNotFound => e
       render json: {error:e.message}, status: :not_found 
@@ -70,5 +70,5 @@ class ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(:branch_id, :number, :age, :name)
     end
-	
+		
 end
