@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   
-    skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   
   def new
     @account = Account.new
