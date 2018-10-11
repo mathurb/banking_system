@@ -44,13 +44,13 @@ class BanksController < ApplicationController
   end
 
   def destroy
-	  begin
-		  @bank = Bank.find(params[:id])
-		  @bank.destroy
-		  render json: {}, status: :ok  
-	  rescue ActiveRecord::RecordNotFound => e
-		  render json: {error:e.message}, status: :unprocessable_entity 
-	  end
+    begin
+      @bank = Bank.find(params[:id])
+      @bank.destroy
+      render json: {}, status: :ok  
+    rescue ActiveRecord::RecordNotFound => e
+      render json: {error:e.message}, status: :unprocessable_entity 
+    end
   end
 
   def update
