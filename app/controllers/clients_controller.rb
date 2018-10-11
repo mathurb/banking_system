@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
 
   def show
     begin
-		  @client = Client.find(params[:id])
+      @client = Client.find(params[:id])
 		  render json: {client:@client}, status: :ok 
 	  rescue ActiveRecord::RecordNotFound => e
 		  render json: {error:e.message}, status: :not_found
