@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a vaild card" do
+    expect(FactoryBot.build(:card)).to be_valid
+  end
 end

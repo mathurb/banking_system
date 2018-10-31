@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_165042) do
+ActiveRecord::Schema.define(version: 2018_10_31_162719) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "client_id"
     t.integer "branch_id"
-    t.decimal "amount"
     t.string "ac_type"
     t.string "ac_number"
     t.string "ifsc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "amount"
     t.index ["branch_id"], name: "index_accounts_on_branch_id"
     t.index ["client_id"], name: "index_accounts_on_client_id"
   end
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 2018_10_10_165042) do
     t.string "card_type"
     t.string "number"
     t.integer "pin"
-    t.decimal "limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "bank_id"
+    t.float "limit"
     t.index ["account_id"], name: "index_cards_on_account_id"
     t.index ["bank_id"], name: "index_cards_on_bank_id"
   end
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 2018_10_10_165042) do
   create_table "loans", force: :cascade do |t|
     t.integer "client_id"
     t.string "loan_type"
-    t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "branch_id"
+    t.float "amount"
     t.index ["branch_id"], name: "index_loans_on_branch_id"
     t.index ["client_id"], name: "index_loans_on_client_id"
   end
@@ -80,10 +80,12 @@ ActiveRecord::Schema.define(version: 2018_10_10_165042) do
   create_table "transections", force: :cascade do |t|
     t.integer "account_id"
     t.string "txn_type"
-    t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "amount"
+    t.integer "card_id"
     t.index ["account_id"], name: "index_transections_on_account_id"
+    t.index ["card_id"], name: "index_transections_on_card_id"
   end
 
 end

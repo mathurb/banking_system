@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Branch, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a vaild branch" do
+    expect(FactoryBot.build(:branch)).to be_valid
+  end
 end

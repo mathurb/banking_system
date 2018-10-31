@@ -5,3 +5,4 @@ class Bank < ApplicationRecord
   validates :address, presence: true
   validates :number, presence: true, length: {maximum: 10}
 end
+#add uniqueindex to name, address, number
