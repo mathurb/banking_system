@@ -5,7 +5,7 @@ class Client < ApplicationRecord
   has_many :cards
   validates :number, presence: true , length: {maximum: 10}
   validates :age, presence: true , numericality:{only_integer: true} , length: {maximum: 3}
-  validates :name, presence: true, length: {maximum: 10}
+  validates :name, presence: true
   validates :branch_id, presence: true
   validate :minimum_age
   private
@@ -15,3 +15,4 @@ class Client < ApplicationRecord
       end
     end
 end
+#add uniquenessindex

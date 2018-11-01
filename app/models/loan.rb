@@ -1,7 +1,7 @@
 class Loan < ApplicationRecord
   belongs_to :client
   belongs_to :branch
-  validates :loan_type, presence: true, length: {maximum: 10}
+  validates :loan_type, presence: true
   validates :amount, presence: true, length: {maximum: 10}, numericality: true
   validates :client_id, :branch_id, presence: true
   validate :minimum_loan_amount

@@ -1,6 +1,6 @@
 class Transection < ApplicationRecord
   belongs_to :account
-  has_one :card
+  belongs_to :card
   validates :txn_type, presence: true, length: {is: 1}, inclusion: { in: %w(W D)}
   validates :amount, presence: true,length: {maximum: 10}, numericality: true
   validates :account_id, presence: true
@@ -8,24 +8,27 @@ class Transection < ApplicationRecord
   after_save :amount_update
   private
     def withdrawl_validity
+      card = Card.find(self.card_id)
+      account = Account.find(self.account_id)
       if self.txn_type == "W"
-        if self.card.limit>self.amount   
-          if self.amount > self.account.balance
-            errors.add(:amount, "should be less than available balance")
-          end 
+        if card.limit>self.amount
+          if self.amount > account.amount
+            errors.add(:amount, "should be less than available amount")
+          end
         else
           errors.add(:amount,"excceds daily limit")
-        end 
+        end
       end
-    end       
+    end
     def amount_update
+      account = Account.find(self.account_id)
       if self.txn_type == "W"
-        new_amount = self.account.amount - self.amount
+        new_amount = account.amount - self.amount
       else
-        new_amount = self.account.amount + self.amount
+        new_amount = account.amount + self.amount
       end
-      unless self.account.update_attributes(amount: new_amount)
+      unless account.update_attributes(amount: new_amount)
         raise "Transaction Incomplete"
-      end 
+      end
     end
 end
